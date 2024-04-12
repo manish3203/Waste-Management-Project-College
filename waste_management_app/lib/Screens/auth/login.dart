@@ -37,7 +37,7 @@ class _LoginState extends State<Login> {
           backgroundColor: Color.fromRGBO(31, 185, 4, 1)
         ),
       );
-      Navigator.push(
+      Navigator.pushReplacement(
         context,
         MaterialPageRoute(
             builder: (context) =>
@@ -125,7 +125,7 @@ class _LoginState extends State<Login> {
                 children: [
                   TextButton(
                     onPressed: () {
-                      Navigator.push(
+                      Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                             builder: (context) => const ForgotPassword()),

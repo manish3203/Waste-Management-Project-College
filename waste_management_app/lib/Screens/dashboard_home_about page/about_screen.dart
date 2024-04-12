@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:waste_managemet_app/Screens/auth/login.dart';
 
 class AboutScreen extends StatefulWidget {
   const AboutScreen({super.key});
@@ -9,15 +12,41 @@ class AboutScreen extends StatefulWidget {
 
 class _AboutScreenState extends State {
 
+  void signOut() async {
+  try {
+    await FirebaseAuth.instance.signOut();
+    Get.offAll(() => const Login()); // Navigate to the Login screen after sign out
+  } catch (e) {
+    print("Error signing out: $e");
+    // Handle sign-out error, if any
+  }
+}
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body:SingleChildScrollView(
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text(
+          "About",
+          style: TextStyle(fontWeight: FontWeight.w900, fontSize: 18),
+        ),
+        automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+            onPressed: (){
+              signOut();
+            }, 
+            icon: const Icon(Icons.logout),
+            tooltip: "Signout",
+          )
+        ],
+      ),
+      body:const SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.all(18.0),
           child: Column(
             children:[
-              const SizedBox(height: 30),
+             
               Center(
                 child: Text(
                   "Poject Name",
@@ -36,7 +65,7 @@ class _AboutScreenState extends State {
                   ),
                 ),
               ),
-              const SizedBox(height: 30),
+              SizedBox(height: 30),
               Center(
                 child: Text(
                   "Team Members",
@@ -99,7 +128,7 @@ class _AboutScreenState extends State {
                   )
                 ],
               ),
-              const SizedBox(height: 30),
+              SizedBox(height: 30),
               Center(
                 child: Text(
                   "Project Information",
@@ -116,7 +145,7 @@ class _AboutScreenState extends State {
                     fontSize: 20
                   ),
               ),
-              const SizedBox(height:30),
+              SizedBox(height:30),
               Center(
                 child: Text(
                   "Hardware Information",
@@ -129,7 +158,7 @@ class _AboutScreenState extends State {
             ]
           )
         ),
-      )
+      ),
     );
   }
 }

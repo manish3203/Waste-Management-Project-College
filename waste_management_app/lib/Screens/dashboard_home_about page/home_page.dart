@@ -27,10 +27,10 @@ class _HomePageState extends State<HomePage> {
 
   // List of widgets for different screens
   List<Widget> widgetList = [
-    const DashBoard(),
+    //const DashBoard(),
+    const ShowData(),
     const MapWithMarkers(),
     const AboutScreen(),
-    const ShowData()
   ];
 
   @override
@@ -44,9 +44,13 @@ class _HomePageState extends State<HomePage> {
         buttonBackgroundColor: Colors.white, // Customize button background color
         height: 60, // Customize the height of the navigation bar
         items:const [
+          // CurvedNavigationBarItem(
+          //   child: Icon(Icons.dashboard, size: 30),
+          //   label: 'Dashboard',
+          // ),
           CurvedNavigationBarItem(
-            child: Icon(Icons.dashboard, size: 30),
-            label: 'Dashboard',
+            child: Icon(Icons.history_rounded, size: 30),
+            label: 'Level Message',
           ),
           CurvedNavigationBarItem(
             child: Icon(Icons.navigation, size: 30),
@@ -55,10 +59,6 @@ class _HomePageState extends State<HomePage> {
           CurvedNavigationBarItem(
             child: Icon(Icons.inbox, size: 30),
             label: 'About',
-          ),
-          CurvedNavigationBarItem(
-            child: Icon(Icons.history_rounded, size: 30),
-            label: 'History',
           ),
         ],
         onTap: (index) {

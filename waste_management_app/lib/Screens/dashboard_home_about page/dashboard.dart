@@ -12,7 +12,6 @@ class _DashBoardState extends State {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(18.0),
