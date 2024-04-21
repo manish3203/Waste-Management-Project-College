@@ -15,7 +15,7 @@ class _ShowDataState extends State<ShowData> {
   
   Future<void> _refreshMode() {
 
-    return Future.delayed(const Duration(seconds: 5),(){
+    return Future.delayed(const Duration(seconds: 3),(){
       setState(() {
       
     });
@@ -77,15 +77,12 @@ class _ShowDataState extends State<ShowData> {
   }
 
   Widget _buildDashboard(int level, String id) {
-    Color indicatorColor = Colors.green;
     String alertMessage = "Dustbin is partially filled.";
 
     // Determine the state of the dustbin based on the fill level
     if (level >= highThreshold) {
-      indicatorColor = Colors.red;
       alertMessage = "Alert: Dustbin is nearly full!";
     } else if (level >= mediumThreshold) {
-      indicatorColor = Colors.orange;
       alertMessage = "Alert: Dustbin is filling up.";
     }
     RealTimeDataModel obj = RealTimeDataModel(
@@ -111,7 +108,7 @@ class _ShowDataState extends State<ShowData> {
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: Colors.white,
+                color: (fetchDataList[index].dustbinLevel >= 90) ? const Color.fromARGB(255, 252, 18, 1).withOpacity(0.8) : (fetchDataList[index].dustbinLevel >= 75) ? Colors.orange : Colors.green,
                 boxShadow: [
                   BoxShadow(
                     offset: const Offset(1, 3),
@@ -121,45 +118,72 @@ class _ShowDataState extends State<ShowData> {
                 ]
               ),
               child: SizedBox(
-                height: 120,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 10),
-                    Text(
-                      "Dustbin ID: ${fetchDataList[index].dustbinId}",
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    
-                    Text(
-                      "Dustbin Level: ${fetchDataList[index].dustbinLevel}%",
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Expanded(
-                      child: Text(
-                        "Message: ${fetchDataList[index].dustbinMsg}%",
+                height: 140,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 8.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 10),
+                      Text(
+                        "Dustbin ID: ${fetchDataList[index].dustbinId}",
                         style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    // LinearProgressIndicator(
-                    //   value: level / 100,
-                    //   backgroundColor: Colors.grey[300],
-                    //   valueColor: AlwaysStoppedAnimation<Color>(indicatorColor),
-                    // ),
-                  ],
+                      
+                      Text(
+                        "Dustbin Level: ${fetchDataList[index].dustbinLevel}%",
+                        style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Expanded(
+                        child: Text(
+                          "Message: ${fetchDataList[index].dustbinMsg}",
+                          style: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 5.0),
+                        child: Center(
+                          child: GestureDetector(
+                            child: Container(
+                              alignment: Alignment.center,
+                              height: 30,
+                              width: 100,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: BorderRadius.circular(10),
+                                boxShadow: [
+                                  BoxShadow(
+                                    offset: const Offset(1, 3),
+                                    color: Colors.grey.withOpacity(0.4),
+                                    blurRadius: 8
+                                  )
+                                ]
+                              ),  
+                              child: const Text("Navigate"),
+                            ),
+                          ),
+                        ),
+                      )
+                      // LinearProgressIndicator(
+                      //   value: level / 100,
+                      //   backgroundColor: Colors.grey[300],
+                      //   valueColor: AlwaysStoppedAnimation<Color>(indicatorColor),
+                      // ),
+                    ],
+                  ),
                 ),
               ),
             );
