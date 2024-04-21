@@ -43,7 +43,7 @@ class _ShowDataState extends State<ShowData> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text("History",
+        title: const Text("Dustbin Fillup Message",
         style: TextStyle(fontWeight: FontWeight.w900, fontSize: 18)),
         centerTitle: true,
       ),
@@ -123,6 +123,7 @@ class _ShowDataState extends State<ShowData> {
               child: SizedBox(
                 height: 120,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(height: 10),
@@ -153,11 +154,11 @@ class _ShowDataState extends State<ShowData> {
                     const SizedBox(
                       height: 20,
                     ),
-                    LinearProgressIndicator(
-                      value: level / 100,
-                      backgroundColor: Colors.grey[300],
-                      valueColor: AlwaysStoppedAnimation<Color>(indicatorColor),
-                    ),
+                    // LinearProgressIndicator(
+                    //   value: level / 100,
+                    //   backgroundColor: Colors.grey[300],
+                    //   valueColor: AlwaysStoppedAnimation<Color>(indicatorColor),
+                    // ),
                   ],
                 ),
               ),
