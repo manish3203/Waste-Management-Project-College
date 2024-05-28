@@ -1,6 +1,7 @@
 
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:waste_managemet_app/Screens/Maps/maps_page.dart';
 import 'package:waste_managemet_app/Services/db_service.dart';
 import 'package:waste_managemet_app/models/real_time_model.dart';
 
@@ -157,6 +158,9 @@ class _ShowDataState extends State<ShowData> {
                         padding: const EdgeInsets.only(bottom: 5.0),
                         child: Center(
                           child: GestureDetector(
+                            onTap: (){
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => const MapWithMarkers()));
+                            },
                             child: Container(
                               alignment: Alignment.center,
                               height: 30,
